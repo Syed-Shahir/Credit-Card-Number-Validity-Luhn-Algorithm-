@@ -1,6 +1,21 @@
 #include<iostream>
 #include <bits/stdc++.h>
 using namespace std;
+
+string getCardType(string number) {
+    if ((number[0] == '4') && (number.size() == 13 || number.size() == 16))
+        return "Visa";
+    else if ((number.substr(0, 2) == "51" || number.substr(0, 2) == "52" || 
+              number.substr(0, 2) == "53" || number.substr(0, 2) == "54" || 
+              number.substr(0, 2) == "55") && number.size() == 16)
+        return "MasterCard";
+    else if ((number.substr(0, 2) == "34" || number.substr(0, 2) == "37") && number.size() == 15)
+        return "American Express";
+    else
+        return "Unknown";
+}
+
+
 int step1(string numb)//this function will add even numbered*2 if 2*numb>9(two digits) that 
     {                //will be added separately
     int k,c,sum=0;
@@ -53,4 +68,8 @@ int main()
     cout<<"credit card number is valid ";
     else
     cout<<"invalid number try again";
+
+    cout << "Card Type: " << getCardType(number) << endl;
+
+
 }
